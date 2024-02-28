@@ -1,0 +1,26 @@
+{
+  "canisters": {
+    "health_records_backend": {
+      "main": "src/health_records_backend/main.mo",
+      "type": "motoko"
+    },
+    "health_records_frontend": {
+      "dependencies": [
+        "health_records_backend"
+      ],
+      "source": [
+        "src/health_records_frontend/dist"
+      ],
+      "type": "assets",
+      "workspace": "health_records_frontend"
+    }
+  },
+  "defaults": {
+    "build": {
+      "args": "",
+      "packtool": ""
+    }
+  },
+  "output_env_file": ".env",
+  "version": 1
+}
