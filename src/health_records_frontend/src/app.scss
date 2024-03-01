@@ -1,0 +1,319 @@
+/* app.scss */
+
+/* Reset default browser styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Global Styles */
+body {
+  font-family: cursive;
+  background-color: #DAF5FF; /* Light gray background color */
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Header Styles */
+.header {
+  background-color: #DAF5FF; /* Maroon background color */
+  color: white;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+}
+
+.logo-text {
+  font-size: 20px;
+  color: black;
+}
+
+.links-container {
+  display: flex;
+  gap: 35px; /* Adjust the gap between links as needed */
+}
+
+.header-link {
+  text-decoration: none;
+  color: maroon;
+  font-weight: bold;
+  font-family: cursive;
+  transition: color 0.3s ease;
+  font-size: 16px;
+}
+
+.header-link:hover {
+  color: #e0e0e0; /* Lighter color on hover */
+}
+
+
+
+
+/* Hero Section Styles */
+.hero {
+  display: flex;
+  align-items: center;
+  margin-top: 50px;
+}
+
+.hero-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.animation-container {
+  flex: 1;
+  /* Add styles for animation container, such as width, height, padding, etc. */
+}
+
+.text-container {
+  flex: 1;
+  padding: 0 20px; /* Adjust as needed for spacing */
+}
+
+.text-container h2 {
+  font-size: 20px;
+  margin-bottom: 20px;
+  font-family: 'Lobster', cursive, Arial, sans-serif;
+  color: maroon;
+}
+
+.text-container p {
+  font-size: 18px;
+  margin-bottom: 30px;
+}
+
+.cta-buttons {
+  display: flex;
+}
+
+.cta-buttons a {
+  text-decoration: none;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 3px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+  font-size: 16px;
+}
+
+.cta-buttons .cta-primary {
+  background-color: maroon; /* Health green color */
+}
+
+.cta-buttons .cta-secondary {
+  background-color: #999; /* Gray color */
+  margin-left: 20px;
+}
+
+.cta-buttons a:hover {
+  opacity: 0.8;
+}
+
+
+/* Features Section Styles */
+.features {
+  padding: 80px 20px; /* Adjust padding and horizontal margin */
+  text-align: center;
+}
+
+.feature-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive grid layout */
+  gap: 40px; /* Adjust the gap between feature items */
+  justify-content: center;
+}
+
+.feature-item {
+  background-color: #f9f9f9; /* Light background color */
+  padding: 40px;
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); /* Box shadow for depth effect */
+  transition: transform 0.3s ease;
+  margin: 0 20px; /* Horizontal margin */
+}
+
+.feature-item:hover {
+  transform: translateY(-5px); /* Hover effect to lift up slightly */
+}
+
+.feature-item h3 {
+  font-size: 20px;
+  margin-bottom: 20px;
+  color: #333; /* Dark text color */
+}
+
+.feature-item p {
+  font-size: 16px;
+  color: #666; /* Medium text color */
+}
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+  .feature-list {
+    grid-template-columns: 1fr; /* Switch to single column layout on smaller screens */
+  }
+}
+
+/* Community Section Styles */
+.community {
+  padding: 80px 20px; /* Adjust padding */
+  text-align: center;
+}
+
+.community h2 {
+  font-size: 20px;
+  margin-bottom: 40px;
+  font-family: cursive; /* Calibrated cursive font */
+}
+
+.community-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive grid layout */
+  gap: 40px; /* Adjust the gap between community items */
+  justify-content: center;
+}
+
+.community-item {
+  background-color: #f9f9f9; /* Light background color */
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); /* Box shadow for depth effect */
+  overflow: hidden; /* Hide overflowing content */
+}
+
+.community-item img {
+  width: 40px; /* Make the image fill the width of its container */
+  height: auto; /* Maintain aspect ratio */
+  max-height: 200px; /* Limit the maximum height of the image */
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+
+.community-description {
+  padding: 20px;
+}
+
+.community-description h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.community-description p {
+  font-size: 16px;
+  color: #666; /* Medium text color */
+}
+
+.community-link {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: maroon; /* Button background color */
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.community-link:hover {
+  background-color: #45a049; /* Darker green color on hover */
+}
+
+
+/* Footer Styles */
+.footer {
+  background-color: #252121;
+  color: white;
+  text-align: center;
+  padding: 20px 0; /* Increase padding for better spacing */
+}
+
+.footer p {
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+/* login */
+/* LoginForm.css */
+
+/* Main container */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* Login form container */
+.login-form {
+  max-width: 400px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Typography */
+.ant-typography h2 {
+  margin-bottom: 20px;
+  font-family: 'Roboto', sans-serif;
+  color: maroon;
+}
+
+/* Form fields */
+.ant-form-item-label {
+  font-weight: bold;
+}
+
+/* Additional links */
+.additional-links {
+  margin-top: 10px;
+  text-align: center;
+}
+
+.additional-links a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.additional-links a:hover {
+  text-decoration: underline;
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  margin-top: 20px;
+}
+
+/* Live GIF container */
+.live-gif-container {
+  margin-left: 20px;
+}
+
+.live-gif {
+  width: 200px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}

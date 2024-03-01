@@ -1,30 +1,26 @@
-import { useState } from 'react';
-import { health_records_backend } from 'declarations/health_records_backend';
+import React from 'react';
+import SplashScreen from './Screens/SplashScreen';
+import LoginForm from '../src/LoginForm';
+import RegistrationForm from '../src/RegistrationForm';
 
 function App() {
-  const [greeting, setGreeting] = useState('');
+  const path = window.location.pathname;
 
-  function handleSubmit(event) {
-    event.preventDefault();
-    const name = event.target.elements.name.value;
-    health_records_backend.greet(name).then((greeting) => {
-      setGreeting(greeting);
-    });
-    return false;
-  }
+  const renderPage = () => {
+    switch (path) {
+      case '/login':
+        return <LoginForm />;
+      case '/signup':
+        return <RegistrationForm />;
+      default:
+        return <SplashScreen />;
+    }
+  };
 
   return (
-    <main>
-      <img src="/logo2.svg" alt="DFINITY logo" />
-      <br />
-      <br />
-      <form action="#" onSubmit={handleSubmit}>
-        <label htmlFor="name">Enter your name: &nbsp;</label>
-        <input id="name" alt="Name" type="text" />
-        <button type="submit">Click Me!</button>
-      </form>
-      <section id="greeting">{greeting}</section>
-    </main>
+    <div className="App">
+      {renderPage()}
+    </div>
   );
 }
 
