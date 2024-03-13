@@ -4,66 +4,54 @@ import Principal "mo:base/Principal";
 import Result "mo:base/Result";
 import Text "mo:base/Text";
 import TrieMap "mo:base/TrieMap";
-import Iter "mo:base/Iter";
 
+actor usermanagement {
 
-actor usermanagement{
-
-type UserPayload = {
-  userName : Text;
-  userNationalIdNo : Text;
-  userTelNo : Text;
-  yearOfBirth : Nat;
- 
-};
-
-type User = {
-  userId : Principal;
-  userName : Text;
-  userNationalIdNo : Text;
-  userTelNo : Text;
-  yearOfBirth : Nat;
-  
-};
-
-
-
-
-
-stable var usersEntries : [(Principal, User)] = [];
-
-var users : TrieMap.TrieMap<Principal, User> = TrieMap.TrieMap<Principal, User>(Principal.equal, Principal.hash);
-
-public func addUser(caller : Principal, userPayload: UserPayload) : async Result.Result<(), Text> {
-  let userId = caller;
-  switch (users.get(userId)) {
-    case (null) {
-      let user : User = {
-        userId = userId;
-        userName = userPayload.userName;
-        userNationalIdNo = userPayload.userNationalIdNo;
-        userTelNo = userPayload.userTelNo;
-        yearOfBirth = userPayload.yearOfBirth;
-       
-      };
-       users.put(userId, user);
-        return #ok();
-      };
-      case (?user) {
-        return #err("The user already has a user account"); //add code to return the userId for other processing
-      }
-  };
-};
-
-
-
-// QUERRY a SINGLE user - Note: ({?User} refers to optional data type. i.e. null or value)
-  public query func getUser(p : Principal) : async ?User {
-    return users.get(p);
+  type UserPayload = {
+    userName : Text;
+    userNationalIdNo : Text;
+    userTelNo : Text;
+    yearOfBirth : Nat;
+    password : Text;  // New field for password
   };
 
-  // UPDATE a SINGLE user account by the user (i.e using user playload)
-  public shared ({ caller }) func updateUser(userPayload : UserPayload) : async Result.Result<(), Text> {
+  type User = {
+    userId : Text;  // Changed to Text
+    userName : Text;
+    userNationalIdNo : Text;
+    userTelNo : Text;
+    yearOfBirth : Nat;
+    password : Text;  // New field for password
+  };
+
+  stable var usersEntries : [User] = [];
+
+  var users : TrieMap.TrieMap<Text, User> = TrieMap.TrieMap<Text, User>(Text.equal, Text.hash); // Changed to TrieMap<Text, User>
+public func addUser(caller : Text, userPayload: UserPayload) : async Result.Result<(), Text> {
+  let existingUser = await getUser(userPayload.userName);
+  if (existingUser != null) {
+    return #err("User already exists");
+  } else {
+    let userId = caller;
+    let user : User = {
+      userId = userId;
+      userName = userPayload.userName;
+      userNationalIdNo = userPayload.userNationalIdNo;
+      userTelNo = userPayload.userTelNo;
+      yearOfBirth = userPayload.yearOfBirth;
+      password = userPayload.password;  // Set the password
+    };
+    users.put(userId, user);
+    return #ok();
+  }
+};
+
+  public query func getUser(username : Text) : async ?User {  // Changed parameter type to Text
+    return users.get(username);
+  };
+
+
+  public func updateUser(caller : Text, userPayload : UserPayload) : async Result.Result<(), Text> {  // Changed parameter type to Text
     switch (users.get(caller)) {
       case (?Null) {
         let updatedUser : User = {
@@ -72,7 +60,7 @@ public func addUser(caller : Principal, userPayload: UserPayload) : async Result
           userNationalIdNo = userPayload.userNationalIdNo;
           userTelNo = userPayload.userTelNo;
           yearOfBirth = userPayload.yearOfBirth;
-         
+          password = userPayload.password;  // Set the password
         };
         users.put(caller, updatedUser);
         return #ok();
@@ -83,9 +71,23 @@ public func addUser(caller : Principal, userPayload: UserPayload) : async Result
     };
   };
 
-  // DELETE a user (only identified callers can delete a user)
-  public shared ({ caller }) func deleteUser() : async () {
+  public shared ({ caller }) func deleteUser(caller : Text) : async () {  // Changed parameter type to Text
     users.delete(caller);
   };
 
+ 
+ public func loginUser(username: Text, password: Text) : async Result.Result<User, Text> {
+  switch (users.get(username)) {
+    case (?user) {
+      if (user.password == password) {
+        return #ok(user);
+      } else {
+        return #err("Invalid password");
+      }
+    };
+    case (null) {
+      return #err("User not found. Please sign up to create an account.");
+    };
+  };
+};
 };
