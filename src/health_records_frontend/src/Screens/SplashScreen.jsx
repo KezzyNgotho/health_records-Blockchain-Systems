@@ -5,7 +5,28 @@ import animation from "../assets/pexels-cdc-3993212.jpg"
 import diabetes from "../assets/icons8-community-100.png"
 import fitnes from '../assets/icons8-apple-fitness-80.png'
 import welness from '../assets/icons8-people-working-together-80.png'
+import { AuthClient } from "@dfinity/auth-client";
+//import Button from '@material-ui/core'; 
+
+
 function LandingPage() {
+  const handleSignIn = async (event) => {
+    event.preventDefault();
+    try {
+      const authClient = await AuthClient.create();
+      await authClient.login({
+        identityProvider: process.env.II_URL,
+        onSuccess: () => {
+          console.log("Logged in!");
+          window.location.href = "/UserManagement"; // Change the URL to navigate to the "/UserManagement" page
+        },
+      }).catch((error) => {
+        console.error("Login failed:", error);
+      });
+    } catch (error) {
+      console.error("AuthClient creation failed:", error);
+    }
+  };
   return (
     <div className="landing-page">
       <header className="header">
@@ -33,9 +54,11 @@ function LandingPage() {
       <h2>Welcome to Your AfyaData</h2>
       <p> The ultimate platform for managing and optimizing your health data effortlessly. With HealthDataHub, you can take control of your health journey like never before, empowering yourself with insights, tools, and resources to lead a healthier and happier life.</p>
       <div className="cta-buttons">
-        <a href="#features" className="cta-primary">Learn More</a>
-        <a href="/signup" className="cta-secondary">Sign Up Now</a>
-      </div>
+              <a href="#features" className="cta-primary">Learn More</a>
+              <button onClick={(event) => handleSignIn(event)} className="cta-primary">
+        Login
+      </button>
+              </div>
     </div>
   </div>
 </section>

@@ -1,0 +1,132 @@
+/* Specify the font families */
+body {
+    font-family: 'Roboto', sans-serif; /* Use Roboto as the default font */
+}
+
+/* Add other styles */
+/* Dashboard Container */
+.dashboard-container {
+    display: flex;
+}
+
+/* Sidebar */
+.dashboard-sidebar {
+    background-color: #EEF5FF;
+    color: black;
+    width: 150px;
+    padding: 20px;
+   
+}
+
+
+
+.dashboard-sidebar nav ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 40px;
+}
+
+.dashboard-sidebar nav ul li {
+    margin-bottom: 20px;
+}
+
+.dashboard-sidebar nav ul li a {
+    text-decoration: none;
+    color: black;
+    font-size: 11px;
+}
+
+.dashboard-sidebar nav ul li a:hover {
+    text-decoration: underline;
+}
+
+/* Main Content Body */
+.dashboard-main {
+    flex: 1;
+    padding: 20px;
+    margin-top: 50px;
+}
+
+.dashboard-section {
+    margin-bottom: 30px;
+}
+
+.dashboard-section h2 {
+    font-size: 15px;
+    color: black;
+}
+
+.dashboard-section p {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #666;
+}
+
+/* Top Bar */
+.dashboard-topbar {
+    background-color: #EEF5FF;
+    color: #333;
+    padding: 10px 20px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.dashboard-topbar h1 {
+    font-size: 14px; /* Adjust font size */
+    margin: 0;
+    font-family: 'Montserrat', sans-serif; /* Use Montserrat as the font for the top bar */
+}
+
+.dashboard-topbar nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+}
+
+.dashboard-topbar nav ul li {
+    display: inline-block;
+    margin-left: 20px;
+}
+
+.dashboard-topbar nav ul li:first-child {
+    margin-left: 0;
+}
+
+.dashboard-topbar nav ul li a {
+    text-decoration: none;
+    color: black;
+    font-size: 11px; /* Adjust font size */
+}
+
+.dashboard-topbar nav ul li a:hover {
+    text-decoration: underline;
+}
+
+.logo-container {
+    margin-right: 20px;
+}
+
+.logo {
+    width: 20px;
+    height: auto;
+}
+
+/* Footer */
+.dashboard-footer {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 20px;
+    text-align: center;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+}

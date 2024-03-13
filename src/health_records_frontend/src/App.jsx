@@ -1,17 +1,21 @@
 import React from 'react';
 import SplashScreen from './Screens/SplashScreen';
-import LoginForm from '../src/LoginForm';
-import RegistrationForm from '../src/RegistrationForm';
+import Dashboard from '../src/Screens/PatientDashboard';
 
+import UserManagement from './UserManagement';
 function App() {
+
+
+
   const path = window.location.pathname;
 
   const renderPage = () => {
     switch (path) {
-      case '/login':
-        return <LoginForm />;
-      case '/signup':
-        return <RegistrationForm />;
+      case '/Dashboard':
+        return <Dashboard />;
+        case '/UserManagement':
+          return <UserManagement />;
+       
       default:
         return <SplashScreen />;
     }
