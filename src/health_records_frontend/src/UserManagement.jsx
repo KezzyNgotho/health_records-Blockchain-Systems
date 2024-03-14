@@ -22,6 +22,8 @@ const UserManagement = () => {
 
       if (loginResult.ok) {
         alert('Login successful');
+        // Store the user session in localStorage
+        localStorage.setItem('loggedInUser', loginUsername);
         navigateToDashboard();
       } else {
         alert('Login failed: ' + loginResult.err);
@@ -30,6 +32,7 @@ const UserManagement = () => {
       alert('Error logging in: ' + err.message);
     }
   };
+
 
   const navigateToDashboard = () => {
     window.location.href = '/Dashboard';
